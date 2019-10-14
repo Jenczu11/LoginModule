@@ -1,5 +1,6 @@
 package login;
 import java.sql.*;
+import login.connectionProvider;
 public class loginManager {
     private static loginManager ourInstance;
     public static loginManager getInstance() {
@@ -8,32 +9,13 @@ public class loginManager {
         }
         return ourInstance;
     }
-//    private DataRepository repository;
     private loginManager() {
         currentUser=new User();
     }
-    private static final String DRIVER = "org.sqlite.JDBC";
-    private static final String DB_URL = "jdbc:sqlite:C:/Users/barte/IdeaProjects/login/testdb";
 
-    private Connection conn = connectToDataBase();
+    private Connection conn = new connectionProvider().connectToDataBase();
     private Statement stat;
     private User currentUser;
-
-
-    private Connection connectToDataBase() {
-        try {
-            Class.forName(loginManager.DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            conn = DriverManager.getConnection(DB_URL);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return conn;
-    }
 
     private boolean checkLogin(String login) {
         Statement stat = null;
