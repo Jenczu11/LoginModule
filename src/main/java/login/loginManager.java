@@ -37,6 +37,8 @@ public class loginManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        System.out.println("Brak loginu w bazie");
         return false;
     }
 
@@ -62,6 +64,12 @@ public class loginManager {
                 System.out.println("[Phase2] Haslo sie zgadza");
                 return true;
             }
+            else
+            {
+                System.out.println("Haslo sie nie zgadza");
+                return false;
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,10 +102,11 @@ public class loginManager {
                     break;
                 }
                 case "null":
-                    {
-                        currentUser.setAccessType(levelProvided.NOTLOGGED);
-                        break;
-                    }
+                default:
+                {
+                    currentUser.setAccessType(levelProvided.NOTLOGGED);
+                    break;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -116,8 +125,12 @@ public class loginManager {
 
 
     public boolean logout() {
+        if(currentUser.getAccessType()==null) {
+            System.out.println("Nie ma nikogo do wylogowania");
+            return true;
+        }
         try {
-            currentUser.setUserName("NONE");
+            currentUser.setUserName(null);
             currentUser.setAccessType(null);
             System.out.println("Wylogowano sie z systemu");
             return true;
@@ -134,6 +147,10 @@ public class loginManager {
     public String getCurrentUserName()
     {
         return currentUser.getUserName();
+    }
+    public String user()
+    {
+        return currentUser.toString();
     }
 
 }
