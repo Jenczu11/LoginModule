@@ -1,6 +1,5 @@
 import login.loginManager;
 import login.loginAccess;
-//import login.User;
 public class main {
     public static void main(String[] args) {
         loginManager lm = loginManager.getInstance();
