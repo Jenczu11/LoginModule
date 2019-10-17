@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class connectionProvider {
     private Connection conn;
     private static final String DRIVER = "org.sqlite.JDBC";
-    private static final String DB_URL = "jdbc:sqlite:C:/Users/barte/IdeaProjects/login/testdb";
+    private static final String DB_URL = "jdbc:sqlite:testdb";
     public Connection connectToDataBase() {
         try {
             Class.forName(connectionProvider.DRIVER);
